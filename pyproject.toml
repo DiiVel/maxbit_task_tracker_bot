@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "maxbit-test"
+version = "0.1.0"
+description = ""
+authors = ["DiiVel <denkrapivnitsky@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyrogram = "^2.0.106"
+tgcrypto = "^1.2.5"
+alembic = "^1.13.1"
+sqlalchemy = "^2.0.30"
+python-dotenv = "^1.0.1"
+asyncpg = "^0.29.0"
+pydantic = "^2.7.1"
+loguru = "^0.7.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
