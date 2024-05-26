@@ -37,3 +37,7 @@ class TaskService(TaskRepo):
 
     async def delete_user(self, task_id: int) -> None:
         await super().delete_task(task_id=task_id)
+
+    async def get_user_tasks(self, user_id: int) -> Sequence[TaskResponse]:
+        tasks = await super().get_user_tasks(user_id=user_id)
+        return [TaskResponse.model_validate(data) for data in tasks]
