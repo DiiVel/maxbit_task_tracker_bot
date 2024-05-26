@@ -3,6 +3,7 @@ from typing import Any
 from loguru import logger
 
 from sqlalchemy import delete, insert, or_, select
+from sqlalchemy.orm import joinedload
 
 from tg_task_tracker.database import AsyncSessionFactory
 from tasks.models import Task
@@ -83,3 +84,20 @@ class TaskRepo(AsyncSessionFactory):
         await session.execute(stmt)
         await session.commit()
         await session.close()
+
+    async def get_user_tasks(self, user_id: int) -> Sequence[Task]:
+        """
+        Method that returns all tasks associated with a specific user
+        :param user_id: User ID
+        :return: Sequence of tasks
+        """
+        stmt = (
+            select(Task)
+            .options(joinedload(Task.user))
+            .where(Task.user_id == user_id)
+        )
+
+        session = await super().get_session()
+        data = (await session.execute(stmt)).scalars().fetchall()
+        await session.close()
+        return data

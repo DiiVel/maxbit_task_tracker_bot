@@ -23,6 +23,7 @@ class User(Base):
         nullable=False,
         unique=True,
     )
+
     created_at: Mapped[datetime] = mapped_column(
         TIMESTAMP,
         nullable=False,
