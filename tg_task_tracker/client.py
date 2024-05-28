@@ -22,13 +22,13 @@ client.add_handler(
 client.add_handler(
     MessageHandler(
         handle_name,
-        filters.text  # & filters.state(RegistrationStates.NAME),
+        filters.text & filters.state(RegistrationStates.NAME),
     ),
 )
 
 client.add_handler(
     MessageHandler(
         handle_username,
-        filters.text  # & filters.state(RegistrationStates.USERNAME),
+        filters.text & filters.state(RegistrationStates.USERNAME),
     ),
 )
