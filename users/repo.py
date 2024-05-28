@@ -36,13 +36,13 @@ class UserRepo(AsyncSessionFactory):
         await session.close()
         return data
 
-    async def get_user(self, user_id: int) -> User | None:
+    async def get_user(self, user_telegram_id: int) -> User | None:
         """
         Method that returns user with given id
-        :param user_id: User id
+        :param user_telegram_id: User telegram id
         :return: User or None
         """
-        stmt = select(User).where(User.id == user_id)
+        stmt = select(User).where(User.user_telegram_id == user_telegram_id)
 
         session = await super().get_session()
         data = (await session.execute(stmt)).scalar_one_or_none()
